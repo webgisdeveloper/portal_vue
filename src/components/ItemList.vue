@@ -1,3 +1,8 @@
+<!--
+
+This handles displaying results from
+
+-->
 <template>
   <div class="item-list">
     <p v-if="items.length===0">
@@ -26,6 +31,7 @@
               </tr>
             <tr>
               <td v-for="attr in items[0]"><input type="text"></td>
+              <td><p data-placement="top" data-toggle="tooltip" title="Add"><b-button size="sm" variant="primary" ><font-awesome-icon icon="plus-square" size="xs" /></b-button></p></td>
             </tr>
             </tbody>
           </table>
