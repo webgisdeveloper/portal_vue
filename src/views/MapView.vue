@@ -1,3 +1,12 @@
+<!--
+
+This view handles generating the leaflet map using the
+vue2-leaflet library  - https://korigan.github.io/Vue2Leaflet
+
+It populates markers from the location object that is populated
+from the vuex store (store.js)
+
+-->
 <template>
   <div class="card-body" style="height: 100%;">
     <l-map ref="map"
@@ -26,6 +35,14 @@
         :position="attributionPosition"
         :prefix="attributionPrefix" />
       <l-control-scale :imperial="imperial" />
+      <l-marker
+        v-for="location in locations"
+        :key="location.location_id"
+        :lat-lng="[location.latitude, location.longitude]"
+        :visible="location.active">
+        <l-popup :content="location.name" />
+        <l-tooltip :content="location.name" />
+      </l-marker>
       <!--
       <l-marker
         v-for="marker in markers"
@@ -38,7 +55,7 @@
         <l-popup :content="marker.tooltip" />
         <l-tooltip :content="marker.tooltip" />
       </l-marker>
-      <l-layer-group
+      <!--<l-layer-group
         layer-type="overlay"
         name="Layer polyline"
       >
@@ -76,8 +93,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { LMap, LTileLayer, LMarker, LPolyline, LLayerGroup, LTooltip, LPopup, LControlZoom, LControlAttribution, LControlScale, LControlLayers } from 'vue2-leaflet';
 import 'leaflet/dist/leaflet.css';
+
+// this part resolve an issue where the markers would not appear
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+    iconUrl: require('leaflet/dist/images/marker-icon.png'),
+    shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
+
 const tileProviders = [
   {
     name: 'OpenStreetMap',
@@ -107,6 +135,9 @@ export default {
     LControlScale,
     LControlLayers
   },
+  computed: mapState([
+    'locations'
+  ]),
   data () {
     return {
       map: null,
@@ -116,7 +147,7 @@ export default {
       opacity: 0.6,
       token: 'your token if using mapbox',
       mapOptions: { zoomControl: false, attributionControl: false, zoomSnap: true },
-      zoom: 13,
+      zoom: 10,
       minZoom: 1,
       maxZoom: 20,
       zoomPosition: 'topleft',

@@ -1,4 +1,4 @@
-# vuestate
+# ETAG Data Portal
 
 ## Project setup
 ```

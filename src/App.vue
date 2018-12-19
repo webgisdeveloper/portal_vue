@@ -1,3 +1,8 @@
+<!--
+
+This is the main page for the application.
+
+-->
 <template>
   <div id="app">
     <b-container fluid>
@@ -19,14 +24,17 @@
       <b-card no-body class="mh-100">
         <b-tabs card>
           <b-tab title="About" active class="mh-100">
-            <about></about>
+            <about/>
           </b-tab>
           <b-tab title="Map" @click="resizeMap" style="height: 500px;">
             <mapview ref="MapView"></mapview>
           </b-tab>
           <b-tab title="My ETAG Data" v-if="user.loggedIn">
-            <myetag></myetag>
+            <myetag/>
           </b-tab>
+          <!--<b-tab title="Profile" v-if="user.loggedIn">
+            <profile/>
+          </b-tab>-->
         </b-tabs>
       </b-card>
     </b-container>
@@ -36,10 +44,11 @@
 <script>
 // @ is an alias to /src
 import LoginStatus from '@/components/LoginStatus.vue'
-import { mapState } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 import About from '@/views/About'
 import Mapview from '@/views/MapView'
 import Myetag from '@/views/MyEtag'
+import Profile from '@/views/Profile'
 export default {
   computed: mapState([
     'title',
@@ -49,9 +58,22 @@ export default {
     LoginStatus,
     About,
     Mapview,
-    Myetag
+    Myetag,
+    Profile
   },
   methods: {
+    ...mapMutations([
+      'SET_CSRF_TOKEN',
+      'GET_ANIMALS',
+      'GET_LOCATIONS',
+      'GET_TAGS'
+    ]),
+    ...mapActions([
+      'set_csrf_token',
+      'get_animals',
+      'get_locations',
+      'get_tags'
+    ]),
     resizeMap () {
       // This is a fix to redraw the leaflet map
       setTimeout(() => {
@@ -59,6 +81,12 @@ export default {
         this.$refs.MapView.resizeMap()
       }, 0)
     }
+  },
+  mounted() {
+    this.set_csrf_token()
+    this.get_animals()
+    this.get_locations()
+    this.get_tags()
   }
 }
 </script>

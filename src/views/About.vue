@@ -1,5 +1,10 @@
+<!--
+
+Edit this file within the <template> tags to change the About tab
+
+-->
 <template>
-  <div class="about">
+  <div class="about text-left">
     <img src="../assets/logo.svg" alt="ETAG logo" style="height: 150px;">
     <h2>Electronic Transponder Analysis Gateway</h2>
     <p>The Electronic Transponder Analysis Gateway (ETAG) is a database and software system to provide professional

@@ -17,7 +17,7 @@ export default {
   },
   props: {
     api_callback: 'etagq.tasks.tasks.etagDataUpload',  // This is the full name of the upload task in cyberCommons
-    filetype: '', // This is one of the following: readers, tags, locations
+    filetype: '', // This is one of the following: animals, tags, locations
   },
   data () {
     return {

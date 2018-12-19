@@ -1,26 +1,33 @@
 <template>
   <div class="loginStatus">
-    <div v-if="user.loggedIn">
-      {{ user.username }}
-      Profile
+    <b-nav-item-dropdown right v-if="user.loggedIn">
+      <template slot="button-content">
+        <em>{{ user.username }}</em>
+      </template>
+      <!--<b-dropdown-item><Profile/></b-dropdown-item>-->
       <!--<a href="/api/api-auth/logout/?next=/portal_vue/#">Signout</a>-->
-      <button @click='logout()'>Signout</button>
-    </div>
+      <b-dropdown-item  @click='logout()'>Signout</b-dropdown-item>
+    </b-nav-item-dropdown>
     <div v-else>
       <!--<a href="/api/api-auth/login/?next=/portal_vue/#">Login</a>-->
-      <button @click='login()'>Login</button>
+      <a @click="login()">Login</a>
+      <Login/>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex'
+import Login from '@/components/Login.vue'
 
 export default {
   name: 'LoginStatus',
   computed: mapState([
     'user'
   ]),
+  components: {
+    Login
+  },
   methods: {
     ...mapMutations([
       'LOG_IN',
