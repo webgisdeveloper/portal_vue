@@ -1,3 +1,13 @@
+<!--
+
+This component uses dropzone and vue2-dropzone libraries to
+facilitate file uploading.
+
+Documentation:
+https://www.dropzonejs.com/
+https://github.com/rowanwins/vue-dropzone
+
+-->
 <template>
   <div class="file-upload">
     <vue-dropzone id="drop1" :options="dzOptions" v-on:vdropzone-sending="sendingEvent"></vue-dropzone>
