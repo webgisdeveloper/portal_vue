@@ -10,15 +10,15 @@ corresponding sections: Tags, Animals, Locations
     <b-card no-body>
       <b-tabs pills card vertical>
         <b-tab title="Tags" active>
-          <ItemList v-bind:items="tags.results" v-bind:colHeaders="['url','tag_id', 'description']"/>
+          <ItemList v-bind:items="tags.results" v-bind:displayFields="['tag_id', 'description']"/>
           <FileUpload filetype="tags"/>
         </b-tab>
         <b-tab title="Animals">
-          <ItemList v-bind:items="animals.results" v-bind:colHeaders="['url', 'animal_id', 'species', 'field_data']"/>
+          <ItemList v-bind:items="animals.results" v-bind:displayFields="['animal_id', 'species', 'field_data']"/>
           <FileUpload filetype="animals"/>
         </b-tab>
         <b-tab title="Locations">
-          <ItemList v-bind:items="locations" v-bind:colHeaders="['url', 'location_id', 'name', 'latitude', 'longitude', 'active']"/>
+          <ItemList v-bind:items="locations" v-bind:displayFields="['location_id', 'name', 'latitude', 'longitude', 'active']"/>
           <FileUpload filetype="locations"/>
         </b-tab>
       </b-tabs>
