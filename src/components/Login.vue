@@ -3,19 +3,20 @@
     <b-btn v-b-modal.modalLogin>Login</b-btn>
 
     <!-- Modal Component -->
-    <b-modal id="modalLogin" title="Bootstrap-Vue">
+    <b-modal id="modalLogin" title="Login" hide-footer="true">
       <form class="modal-content animate" v-bind:action="login_url" method="post">
         <input type='hidden' name='csrfmiddlewaretoken' v-bind:value='csrftoken' />
-        <div class="container">
-          <label for="username"><b>Username</b></label>
+        <div class="container box">
+          <!--<label for="username"><b>Username</b></label>-->
           <input type="text" placeholder="Enter Username" name="username" required>
 
-          <label for="password"><b>Password</b></label>
+          <!--<label for="password"><b>Password</b></label>-->
           <input type="password" placeholder="Enter Password" name="password" required>
 
           <input type="hidden" >
 
-          <button type="submit">Login</button>
+          <button type="submit">Submit</button>
+          <button type="reset" @click="hideModal">Cancel</button>
           <!--<label>
             <input type="checkbox" checked="checked" name="remember"> Remember me
           </label>-->
@@ -51,7 +52,29 @@ export default {
     logout () {
       // console.log('logout method')
       this.log_out()
-    }
+    },
+    hideModal () {
+      this.$root.$emit('bv::hide::modal','modalLogin')
+    },
   }
 }
 </script>
+<style>
+  input[type=text],input[type=password],input[type=submit]{
+    display:block;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding:5px;
+    box-shadow:inset rgba(38,39,42,0.09) 0 1px 4px;
+    font-family:Ubuntu;
+  }
+
+  .box{
+    border: 1px solid rgba(0,0,0,0.2);
+    display:inline-block;
+    border-radius: 2px;
+    padding:50px 30px 30px;
+    background-color: rgba(0,0,0,0.05);
+  }
+</style>
