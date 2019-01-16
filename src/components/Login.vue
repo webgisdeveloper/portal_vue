@@ -4,24 +4,22 @@
 
     <!-- Modal Component -->
     <b-modal id="modalLogin" title="Login" hide-footer="true">
-      <form class="modal-content animate" v-bind:action="login_url" method="post">
+      <b-form class="modal-content animate" v-bind:action="login_url" method="post">
         <input type='hidden' name='csrfmiddlewaretoken' v-bind:value='csrftoken' />
         <div class="container box">
-          <!--<label for="username"><b>Username</b></label>-->
+          <b-label for="username"><b>Username</b></b-label>
           <input type="text" placeholder="Enter Username" name="username" required>
 
-          <!--<label for="password"><b>Password</b></label>-->
+          <b-label for="password"><b>Password</b></b-label>
           <input type="password" placeholder="Enter Password" name="password" required>
 
-          <input type="hidden" >
-
-          <button type="submit">Submit</button>
-          <button type="reset" @click="hideModal">Cancel</button>
-          <!--<label>
+          <b-button type="submit">Submit</b-button>
+          <!--<b-button type="reset" @click="hideModal">Cancel</b-button>
+          <label>
             <input type="checkbox" checked="checked" name="remember"> Remember me
           </label>-->
         </div>
-      </form>
+      </b-form>
     </b-modal>
   </div>
 </template>
