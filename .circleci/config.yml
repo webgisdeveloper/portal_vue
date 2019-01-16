@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/vuestat
     docker:
-      - image: circleci/node:6.4.1
+      - image: circleci/node:6
     steps:
       - checkout
       - run:
