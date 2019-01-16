@@ -3,12 +3,12 @@ jobs:
   build:
     working_directory: ~/vuestat
     docker:
-      - image: circleci/node:6
+      - image: circleci/node:8.9
     steps:
       - checkout
       - run:
           name: update-npm
-          command: 'sudo npm install -g npm@6'
+          command: 'sudo npm install -g npm@5'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
