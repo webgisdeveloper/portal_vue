@@ -10,15 +10,31 @@ corresponding sections: Tags, Animals, Locations
     <b-card no-body>
       <b-tabs pills card vertical>
         <b-tab title="Tags" active>
-          <ItemList v-bind:items="tags.results" v-bind:displayFields="['tag_id', 'description']"/>
+          <ItemList v-bind:items="tags.results" v-bind:displayFields="[
+            {key: 'tag_id', label: 'Tag ID', sortable: true},
+            {key: 'description', label: 'Description', sortable: true},
+            {key: 'actions', label: 'Actions'}
+          ]"/>
           <FileUpload filetype="tags"/>
         </b-tab>
         <b-tab title="Animals">
-          <ItemList v-bind:items="animals.results" v-bind:displayFields="['animal_id', 'species', 'field_data']"/>
+          <ItemList v-bind:items="animals.results" v-bind:displayFields="[
+            {key: 'animal_id', label: 'Animal ID', sortable: true},
+            {key: 'species', label: 'Species', sortable: true},
+            {key: 'field_data', label: 'Field Data'},
+            {key: 'actions', label: 'Actions'}
+          ]"/>
           <FileUpload filetype="animals"/>
         </b-tab>
         <b-tab title="Locations">
-          <ItemList v-bind:items="locations" v-bind:displayFields="['location_id', 'name', 'latitude', 'longitude', 'active']"/>
+          <ItemList v-bind:items="locations" v-bind:displayFields="[
+            {key: 'location_id', label: 'Location ID', sortable: true},
+            {key: 'name', label: 'Name', sortable: true},
+            {key: 'latitude', label: 'Latitude'},
+            {key: 'longitude', label: 'Longitude'},
+            {key: 'active', label: 'Active'},
+            {key: 'actions', label: 'Actions'}
+          ]"/>
           <FileUpload filetype="locations"/>
         </b-tab>
       </b-tabs>

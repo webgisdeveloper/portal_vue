@@ -59,7 +59,7 @@ This handles displaying results from
         <b-table show-empty
                  stacked="md"
                  :items="items"
-                 :fields="fields"
+                 :fields="displayFields"
                  :current-page="currentPage"
                  :per-page="perPage"
                  :filter="filter"
@@ -67,16 +67,20 @@ This handles displaying results from
                  :sort-desc.sync="sortDesc"
                  :sort-direction="sortDirection"
                  @filtered="onFiltered"
+                 striped="true"
         >
-          <template slot="name" slot-scope="row">{{row.value.first}} {{row.value.last}}</template>
-          <template slot="isActive" slot-scope="row">{{row.value?'Yes :)':'No :('}}</template>
+          <!--<template slot="name" slot-scope="row">{{row.value.first}} {{row.value.last}}</template>-->
+          <!--<template slot="isActive" slot-scope="row">{{row.value?'Yes :)':'No :('}}</template>-->
           <template slot="actions" slot-scope="row">
             <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
-            <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
-              Info modal
+            <b-button size="sm" @click.stop="edit(row.item, row.index, $event.target)" class="mr-1">
+              Edit
             </b-button>
-            <b-button size="sm" @click.stop="row.toggleDetails">
+            <b-button size="sm" @click.stop="row.toggleDetails" class="mr-1">
               {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
+            </b-button>
+            <b-button size="sm" @click.stop="remove(row.item)" class="mr-1">
+              Remove
             </b-button>
           </template>
           <template slot="row-details" slot-scope="row">
@@ -94,9 +98,14 @@ This handles displaying results from
           </b-col>
         </b-row>
 
-        <!-- Info modal -->
-        <b-modal id="modalInfo" @hide="resetModal" :title="modalInfo.title" ok-only>
-          <pre>{{ modalInfo.content }}</pre>
+        <!-- Edit modal -->
+        <b-modal id="modalEdit" @hide="resetModal" :title="modalEdit.title" ok-only>
+          <b-form class="modal-content animate" v-bind:action="modalEdit.url" method="post">
+            <b-form-group v-for="(value, key) in modalEdit.content" v-if="key !== 'url'">
+              <label>{{ key }}</label>
+              {{ value }}
+            </b-form-group>
+          </b-form>
         </b-modal>
 
       </b-container>
@@ -112,17 +121,58 @@ export default {
     displayFields: Array,
     title: 'items'
   },
+  computed: {
+    sortOptions () {
+      // Create an options list from our fields
+      return this.displayFields
+        .filter(f => f.sortable)
+        .map(f => { return { text: f.label, value: f.key } })
+    },
+    totalRows: function () {
+      // a computed getter for number of records
+      // this is used by the pagination
+      return this.items.length
+    }
+  },
+  methods: {
+    onFiltered (filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      // TODO: Fix me - the page numbers are not updating in the pagination
+      this.totalRows = filteredItems.length
+      this.currentPage = 1
+    },
+    edit (item, index, button) {
+      console.log(item)
+      this.modalEdit.title = `Item: ${item}`
+      this.modalEdit.url = item.url
+      this.modalEdit.content = []
+      for (var field in this.displayFields) {
+        this.modalEdit.content.push({key: field.key, label: field.label, value:item[field.key]})
+      }
+      console.log(this.modalEdit.content)
+      this.$root.$emit('bv::show::modal', 'modalEdit', button)
+    },
+    remove (item, index, button) {
+        // TODO: get confirmation from user prior to removal - add logic to call api for removal - update items object
+        console.log("remove: " + item.url)
+    },
+    resetModal () {
+      // TODO: fix me - empty modal is displayed when switching between myetag sections after clicking edit in ui
+      this.modalEdit.title = ''
+      this.modalEdit.url = ''
+      this.modalEdit.content = []
+    }
+  },
   data () {
     return {
       currentPage: 1,
       perPage: 5,
-      totalRows: this.props.items.length,
       pageOptions: [5, 10, 15],
       sortBy: null,
       sortDesc: false,
       sortDirection: 'asc',
       filter: null,
-      modalInfo: {title: '', content: ''}
+      modalEdit: {title: '', url: '', content: []}
     }
   }
 }
