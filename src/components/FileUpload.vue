@@ -10,7 +10,12 @@ https://github.com/rowanwins/vue-dropzone
 -->
 <template>
   <div class="file-upload">
-    <vue-dropzone id="drop1" :options="dzOptions" v-on:vdropzone-sending="sendingEvent"></vue-dropzone>
+    <vue-dropzone id="drop1"
+      :options="dzOptions"
+      v-on:vdropzone-error="failEvent"
+      v-on:vdropzone-sending="sendingEvent"
+      v-on:vdropzone-success="successEvent"
+    />
   </div>
 </template>
 
@@ -52,9 +57,21 @@ export default {
       }
       return ''
     },
+    failEvent (file, message, xhr) {
+        console.log(file)
+        console.log(message)
+        console.log(xhr)
+        // TODO: add failure handling
+        // See for available events: https://rowanwins.github.io/vue-dropzone/docs/dist/#/events
+    },
     sendingEvent (file, xhr, formData) {
       formData.append('callback', this.api_callback)
       formData.append('filetype', this.filetype)
+    },
+    successEvent (file, response) {
+        console.log(file)
+        console.log(response)
+        // TODO: check status code returned in response. Success here does not mean callback was successfull
     }
   }
 }
