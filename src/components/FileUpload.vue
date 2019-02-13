@@ -16,40 +16,45 @@ https://github.com/rowanwins/vue-dropzone
 
 <script>
 import vueDropzone from 'vue2-dropzone'
-import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   name: 'FileUpload',
-  computed: mapState([
-    'csrftoken'
-  ]),
   components: {
     vueDropzone
   },
   props: {
-    api_callback: 'etagq.tasks.tasks.etagDataUpload',  // This is the full name of the upload task in cyberCommons
     filetype: '', // This is one of the following: animals, tags, locations
   },
   data () {
     return {
+      api_callback: 'etagq.tasks.tasks.etagDataUpload',  // This is the full name of the upload task in cyberCommons
       dzOptions: {
         dictDefaultMessage: 'Drop file here or click to upload.',
         acceptedFiles: '.csv',
         withCredentials: true,
-        headers: {'X-CSRFToken': this.csrftoken},
+        headers: {'X-CSRFToken': this.getCookie('csrftoken')},
         url: '/api/etag/file-upload/'
       }
     }
   },
   methods: {
-    ...mapMutations([
-      'SET_CSRF_TOKEN'
-    ]),
-    ...mapActions([
-      'set_csrf_token'
-    ]),
+    getCookie (cname) {
+      let name = cname + '='
+      let decodedCookie = decodeURIComponent(document.cookie)
+      let ca = decodedCookie.split(';')
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i]
+        while (c.charAt(0) === ' ') {
+          c = c.substring(1)
+        }
+        if (c.indexOf(name) === 0) {
+          return c.substring(name.length, c.length)
+        }
+      }
+      return ''
+    },
     sendingEvent (file, xhr, formData) {
-      formData.append('callback', api_callback)
-      formData.append('filetype', filetype)
+      formData.append('callback', this.api_callback)
+      formData.append('filetype', this.filetype)
     }
   }
 }
