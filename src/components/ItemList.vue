@@ -165,7 +165,7 @@ export default {
       this.modalEdit.content = []
     },
     downloadTemplate () {
-        location.href='http://localhost/api/etag/file-template/?filetype=' + this.filetype
+        location.href='api/etag/file-template/?filetype=' + this.filetype
     }
   },
   data () {
