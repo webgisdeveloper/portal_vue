@@ -8,6 +8,7 @@ This handles displaying results from
     <p v-if="items.length===0">
       <b-alert show variant="warning">
         <strong>Please add or upload {{ title }}!</strong>
+        <button type="button" class="btn btn-primary" @click="downloadTemplate()">Download Template</button>
       </b-alert>
     </p>
     <div v-else>
@@ -117,6 +118,7 @@ This handles displaying results from
 export default {
   name: 'ItemList',
   props: {
+    filetype: '',
     items: Array,
     displayFields: Array,
     title: 'items'
@@ -161,6 +163,9 @@ export default {
       this.modalEdit.title = ''
       this.modalEdit.url = ''
       this.modalEdit.content = []
+    },
+    downloadTemplate () {
+        location.href='http://localhost/api/etag/file-template/?filetype=' + this.filetype
     }
   },
   data () {
