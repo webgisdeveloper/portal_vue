@@ -7,7 +7,7 @@ import BootstrapVue from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import 'vue2-dropzone/dist/vue2Dropzone.css'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
 // Specific font awesome glyphs need to be registered here
 import { library } from '@fortawesome/fontawesome-svg-core'
