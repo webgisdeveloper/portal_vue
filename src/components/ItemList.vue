@@ -108,7 +108,7 @@ This handles displaying results from
             </b-form-group>
           </b-form>
         </b-modal>
-
+        <button type="button" class="btn btn-primary" @click="downloadData()">Download Data</button>
       </b-container>
     </div>
   </div>
@@ -166,6 +166,9 @@ export default {
     },
     downloadTemplate () {
         location.href='api/etag/file-template/?filetype=' + this.filetype
+    },
+    downloadData () {
+        location.href='api/etag/file-download/?format=csv&filetype=' + this.filetype
     }
   },
   data () {
