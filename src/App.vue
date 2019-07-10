@@ -72,7 +72,8 @@ export default {
       'set_csrf_token',
       'get_animals',
       'get_locations',
-      'get_tags'
+      'get_tags',
+      'log_in'
     ]),
     resizeMap () {
       // This is a fix to redraw the leaflet map
@@ -87,6 +88,7 @@ export default {
     this.get_animals()
     this.get_locations()
     this.get_tags()
+    this.log_in()
   }
 }
 </script>

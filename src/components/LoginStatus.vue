@@ -10,7 +10,7 @@
     </b-nav-item-dropdown>
     <div v-else>
       <!--<a href="/api/api-auth/login/?next=/portal_vue/#">Login</a>-->
-      <a @click="login()">Login</a>
+      <!--<a @click="login()">Login</a>-->
       <Login/>
     </div>
   </div>
@@ -39,7 +39,7 @@ export default {
     ]),
     login () {
       // console.log('login method')
-      this.log_in()
+      this.log_in()')
     },
     logout () {
       // console.log('logout method')

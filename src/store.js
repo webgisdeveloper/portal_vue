@@ -63,12 +63,21 @@ export default new Vuex.Store({
         })
     },
     LOG_OUT: (state) => {
-      state.user = {
-        'loggedIn': false,
-        'username': '',
-        'firstname': '',
-        'lastname': ''
-      }
+      fetch('/api/api-auth/logout/?next=/#/', {credentials: 'include'})
+        .then(response => {
+          return response // we only get here if there is no error
+        })
+        .then(
+          state.user = {
+              'loggedIn': false,
+              'username': '',
+              'firstname': '',
+              'lastname': ''
+          }
+        )
+        .catch(err => {
+          console.log(err)
+        })
     },
     SET_CSRF_TOKEN: (state) => {
       function getCookie (cname) {
