@@ -7,6 +7,7 @@ import MyEtag from './views/MyEtag.vue'
 Vue.use(Router)
 
 export default new Router({
+  base: 'portal_vue',
   routes: [
     {
       path: '/',
