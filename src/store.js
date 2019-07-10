@@ -102,7 +102,7 @@ export default new Vuex.Store({
         })
     },
     GET_ANIMALS: (state) => {
-      fetch('/api/etag/animals/?format=json', {credentials: 'include'})
+      fetch('/api/etag/tag_animal/?format=json', {credentials: 'include'})
         .then(response => {
           return response.json() // we only get here if there is no error
         })
