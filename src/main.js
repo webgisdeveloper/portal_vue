@@ -19,6 +19,8 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
+// FIXME: Set devtools to false when building for production
+Vue.config.devtools = true;
 
 new Vue({
   router,
