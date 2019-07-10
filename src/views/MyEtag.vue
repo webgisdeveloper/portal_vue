@@ -26,10 +26,14 @@ corresponding sections: Tags, Animals, Locations
                   filetype="animals"
                   v-bind:items="animals.results"
                   v-bind:displayFields="[
-                    {key: 'animal_id', label: 'Animal ID', sortable: true},
-                    {key: 'species', label: 'Species', sortable: true},
-                    {key: 'field_data', label: 'Field Data'},
+                    {key: 'tag_id', label: 'Tag ID', sortable: true},
+                    {key: 'start_time', label: 'Tagged Date', sortable: true},
+                    {key: 'end_time', label: 'Tag Removal Date', sortable: true},
+                    // {key: 'field_data', label: 'Field Data'},
                     {key: 'actions', label: 'Actions'}
+                  ]"
+                  v-bind:formFields="[
+                    {key: 'tag_id', label: 'Tag ID', sortable: true},
                   ]"
           />
           <FileUpload filetype="animals"/>

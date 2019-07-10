@@ -86,9 +86,12 @@ This handles displaying results from
           </template>
           <template slot="row-details" slot-scope="row">
             <b-card>
-              <ul>
+              <!-- <ul>
                 <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value}}</li>
-              </ul>
+              </ul> -->
+              <detail-form
+                v-bind:formFields="formFields"
+              />
             </b-card>
           </template>
         </b-table>
@@ -115,13 +118,19 @@ This handles displaying results from
 </template>
 
 <script>
+import DetailForm from '@/components/DetailForm.vue'
+
 export default {
   name: 'ItemList',
   props: {
     filetype: '',
     items: Array,
     displayFields: Array,
+    formFields: Array,
     title: 'items'
+  },
+  components: {
+    DetailForm
   },
   computed: {
     sortOptions () {
