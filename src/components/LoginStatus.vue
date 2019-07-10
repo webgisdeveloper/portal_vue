@@ -39,7 +39,7 @@ export default {
     ]),
     login () {
       // console.log('login method')
-      this.log_in()')
+      this.log_in()
     },
     logout () {
       // console.log('logout method')
