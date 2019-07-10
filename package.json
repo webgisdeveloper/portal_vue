@@ -1,5 +1,5 @@
 {
-  "name": "vuestate",
+  "name": "ETAG",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,23 +7,23 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.8",
-    "@fortawesome/free-solid-svg-icons": "^5.5.0",
-    "@fortawesome/vue-fontawesome": "^0.1.3",
-    "bootstrap-vue": "^2.0.0-rc.11",
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/vue-fontawesome": "^0.1.6",
+    "bootstrap-vue": "^2.0.0-rc.22",
     "i": "^0.3.6",
-    "jquery": "^3.3.1",
-    "leaflet": "latest",
-    "npm": "^6.4.1",
-    "vue": "^2.5.17",
-    "vue-router": "^3.0.1",
-    "vue2-dropzone": "^3.5.2",
+    "jquery": "^3.4.1",
+    "leaflet": "^1.5.1",
+    "npm": "^6.9.0",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.6",
+    "vue2-dropzone": "^3.5.9",
     "vue2-leaflet": "^1.2.3",
-    "vuex": "^3.0.1"
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.1.1",
-    "@vue/cli-service": "^3.1.1",
-    "vue-template-compiler": "^2.5.17"
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-service": "^3.8.0",
+    "vue-template-compiler": "^2.6.10"
   }
 }
