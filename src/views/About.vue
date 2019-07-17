@@ -21,5 +21,7 @@ Edit this file within the <template> tags to change the About tab
       transponder tags and readers, and it can facilitate tracking of individual items or animals that are equipped with
       a tag. A community of researchers has emerged that employs RFID to track individual birds, mammals, fish,
       reptiles, and even insects in a wide range of field and laboratory research endeavors.</p>
+    <h3>Getting Started with ETAG</h3>
+    <p>Please visit our  <a href="https://osf.io/eqxt5/">User Guide</a> to get started using ETAG.</p>
   </div>
 </template>
