@@ -85,10 +85,10 @@ export default {
   },
   mounted() {
     this.set_csrf_token()
+    this.log_in()
     this.get_animals()
     this.get_locations()
     this.get_tags()
-    this.log_in()
   }
 }
 </script>

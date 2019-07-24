@@ -159,6 +159,7 @@ export default new Vuex.Store({
   },
   actions: {
     log_in: (context) => {
+      context.commit('SET_CSRF_TOKEN')  // Ensure that we have the CSRF token
       context.commit('LOG_IN')
     },
     log_out: (context) => {
