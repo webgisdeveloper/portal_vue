@@ -8,7 +8,7 @@ This handles editing an individual item
     <b-btn v-b-modal.modalEditItem>Edit</b-btn>
 
     <!-- Modal Component -->
-    <b-modal id="modalEditItem" title="Edit" hide-footer="true">
+    <b-modal id="modalEditItem" title="Edit" hide-footer>
       <b-form class="modal-content animate" v-bind:action="item_url" method="post">
         <input type='hidden' name='csrfmiddlewaretoken' v-bind:value='csrftoken' />
         <div class="container box">

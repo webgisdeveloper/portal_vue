@@ -3,7 +3,8 @@
     <b-btn v-b-modal.modalLogin>Login</b-btn>
 
     <!-- Modal Component -->
-    <b-modal id="modalLogin" title="Login" hide-footer="true">
+    <!-- FIXME: b-label is an unknown element. See https://bootstrap-vue.js.org/docs/components/form-group/#label -->
+    <b-modal id="modalLogin" title="Login" hide-footer>
       <b-form class="modal-content animate" v-bind:action="login_url" method="post">
         <input type='hidden' name='csrfmiddlewaretoken' v-bind:value='csrftoken' />
         <div class="container box">
