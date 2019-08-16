@@ -9,7 +9,7 @@ corresponding sections: Tags, Animals, Locations
   <div class="myetag">
     <b-card no-body>
       <b-tabs pills card vertical>
-        <b-tab title="Tag Reads" active>
+        <b-tab title="RFID Reads" active>
           <ItemList
                   filetype="tags"
                   v-bind:items="tags.results"
@@ -21,7 +21,7 @@ corresponding sections: Tags, Animals, Locations
           />
           <FileUpload filetype="tags"/>
         </b-tab>
-        <b-tab title="Tagged Animals">
+        <b-tab title="Tagged Data">
           <ItemList
                   filetype="animals"
                   v-bind:items="animals.results"
@@ -38,12 +38,12 @@ corresponding sections: Tags, Animals, Locations
           />
           <FileUpload filetype="animals"/>
         </b-tab>
-        <b-tab title="Locations">
+        <b-tab title="Reader Data">
           <ItemList
                   filetype="locations"
                   v-bind:items="locations"
                   v-bind:displayFields="[
-                    {key: 'location_id', label: 'Location ID', sortable: true},
+                    // {key: 'location_id', label: 'Location ID', sortable: true},
                     {key: 'name', label: 'Name', sortable: true},
                     {key: 'latitude', label: 'Latitude'},
                     {key: 'longitude', label: 'Longitude'},
