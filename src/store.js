@@ -69,6 +69,7 @@ export default new Vuex.Store({
             'firstname': json.firstname,
             'lastname': json.lastname
           }
+          Vue.$ga.enable()
         })
         .catch(err => {
           console.log(err)
@@ -91,7 +92,8 @@ export default new Vuex.Store({
               'username': '',
               'firstname': '',
               'lastname': ''
-          }
+          },
+          Vue.$ga.disable()
         )
         .catch(err => {
           console.log(err)
