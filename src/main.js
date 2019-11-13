@@ -11,9 +11,9 @@ import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
 // Specific font awesome glyphs need to be registered here
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTrashAlt, faEdit ,faPlusSquare} from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faEdit, faPlusSquare, faCaretRight, faCaretDown} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faTrashAlt, faEdit, faPlusSquare)  // These are the font awesome glyphs used by this application
+library.add(faTrashAlt, faEdit, faPlusSquare, faCaretRight, faCaretDown )  // These are the font awesome glyphs used by this application
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(BootstrapVue)

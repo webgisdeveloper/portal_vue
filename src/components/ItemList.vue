@@ -68,7 +68,7 @@ This handles displaying results from
                  :sort-desc.sync="sortDesc"
                  :sort-direction="sortDirection"
                  @filtered="onFiltered"
-                 striped="true"
+                 striped
         >
           <!--<template slot="name" slot-scope="row">{{row.value.first}} {{row.value.last}}</template>-->
           <!--<template slot="isActive" slot-scope="row">{{row.value?'Yes :)':'No :('}}</template>-->
@@ -83,6 +83,11 @@ This handles displaying results from
             <b-button size="sm" @click.stop="remove(row.item)" class="mr-1">
               Remove
             </b-button>
+            <!--<font-awesome-icon
+              @click.stop="row.toggleDetails"
+              :icon="row.detailsShowing ? 'caret-down' : 'caret-right'"
+              size="lg"
+            />-->
           </template>
           <template slot="row-details" slot-scope="row">
             <b-card>
@@ -90,7 +95,7 @@ This handles displaying results from
                 <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value}}</li>
               </ul> -->
               <detail-form
-                v-bind:formFields="formFields"
+                v-bind:formFields="row"
               />
             </b-card>
           </template>

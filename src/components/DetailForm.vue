@@ -7,7 +7,7 @@ This handles displaying results from
   <div class="detailForm">
     This is the detail form...
     <ul>
-      <li v-for="(value, key) in formFields" :key="key">{{ key }}: {{ value}}</li>
+      <li v-for="(value, key) in formFields.item" :key="key">{{ key }}: {{ value}}</li>
     </ul>
   </div>
 </template>
