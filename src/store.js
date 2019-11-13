@@ -39,6 +39,24 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    // TODO: This is not complete
+    SIGNIN: (state, username, password) => {
+      if (state.loggedIn === false) {
+        console.log('api post to login')
+        fetch('/api/api-auth/login/', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          },
+          body: JSON.stringify({username:username, password:password})
+        })
+          .then(response => {
+            console.log(response.json())
+          })
+      }
+    },
     LOG_IN: (state) => {
       fetch('/api/user/?format=json', {credentials: 'include'})
         .then(response => {
@@ -158,6 +176,11 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    signin: (context) => {
+      context.commit('SIGNIN')
+      context.commit('SET_CSRF_TOKEN')
+      context.commit('LOG_IN')
+    },
     log_in: (context) => {
       context.commit('SET_CSRF_TOKEN')  // Ensure that we have the CSRF token
       context.commit('LOG_IN')

@@ -26,7 +26,9 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex'
+// currently not using mutations or actions
+// import { mapState, mapMutations, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'LoginStatus',
@@ -35,7 +37,7 @@ export default {
     'login_url',
     'csrftoken'
   ]),
-  methods: {
+  /*methods: {
     ...mapMutations([
       'LOG_IN',
       'LOG_OUT'
@@ -55,7 +57,7 @@ export default {
     hideModal () {
       this.$root.$emit('bv::hide::modal','modalLogin')
     },
-  }
+  }*/
 }
 </script>
 <style>
