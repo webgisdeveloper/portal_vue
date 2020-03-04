@@ -8,8 +8,20 @@ from the vuex store (store.js)
 
 -->
 <template>
-  <div class="card-body" style="height: 100%;">
-    <l-map ref="map"
+<div id="app" class="container" style="height:100%;width:100%">
+  <div class="row" style="height:100%;width:100%">
+  <div class="col-md-2">
+      <label class="form-check-label">
+  <input
+    class="form-check-input"
+    type="checkbox"
+  /> Readers </label>
+     
+    </div>  
+    
+  <div class="col-md-9">
+      <!-- The map goes here -->
+          <l-map ref="map"
       :zoom.sync="zoom"
       :options="mapOptions"
       :center="center"
@@ -89,7 +101,10 @@ from the vuex store (store.js)
       </l-layer-group>
       -->
     </l-map>
-  </div>
+
+    </div>    
+    </div>
+</div>
 </template>
 
 <script>
@@ -112,14 +127,7 @@ const tileProviders = [
     visible: true,
     attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-  },
-  {
-    name: 'OpenTopoMap',
-    visible: false,
-    url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-    attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-  }
-];
+  }];
 export default {
   name: 'mapview',
   components: {
@@ -133,7 +141,7 @@ export default {
     LControlZoom,
     LControlAttribution,
     LControlScale,
-    LControlLayers
+    //LControlLayers
   },
   computed: mapState([
     'locations'
