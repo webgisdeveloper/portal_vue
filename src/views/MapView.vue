@@ -10,13 +10,46 @@ from the vuex store (store.js)
 <template>
   <div class="row" style="height:100%;width:100%">
   <div class="col-md-2" align="left">
-        <b-form-group label="Data Type">
+        <b-form-group label="Data Type" class="font-weight-bold">
       <b-form-radio-group stacked id="radio-group-2" v-model="selected" name="radio-sub-component" stacked>
       <b-form-radio  value="readers">Readers</b-form-radio>
       <b-form-radio value="tags">Tag Reads</b-form-radio>
        </b-form-radio-group>
     </b-form-group>
-    <div class="mt-3">Selected: <strong>{{ selected }}</strong></div> </div>  
+    <strong>Display Type</strong>
+        <ul style="list-style-type:none;padding:0;">
+        <li>
+      <label><input type="radio" name="opt_displaytype" value="tag_summaries" id="tag_summaries" checked=checked> Summaries</label>
+      </li>
+      <li>
+      <label><input type="radio" name="opt_displaytype" value="raw_tag_reads" id="raw_tag_reads"> Raw tag reads</label>
+      </li>
+      </ul>
+    <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
+                        <strong>Species</strong>
+                                    <select class="selectpicker"  ref='select1'  id="species_selector" title="Choose one or more..." data-live-search="true" multiple data-actions-box="true">
+                                                <option>Cardinal</option>
+                                                <option>Blue Jay</option>
+                                                <option>Chickadee</option>
+                                                <option>Titmouse</option>
+                                                <option>Sparrow</option>
+                                                <option>Finch</option>
+                                                <option>Others</option>
+                                    </select>
+                                      <br><strong>Tag ID</strong>
+                                              <select class="selectpicker" id="tag_selector" title="Choose one or more..." data-live-search="true" multiple data-actions-box="true">
+                                                <option>620000620</option>
+                                                <option>620000731</option>
+                                                <option>06200005BA</option>
+                                                <option>TDP000064D</option>
+                                                </select>
+                                    <br><strong>Data Privacy</strong>
+                                                <select class="selectpicker" id="data_privacy" title="User only">
+                                                  <option>User only</option>
+                                                  <option>All data</option>
+                                                  </select>
+
+  </div>
   <div class="col-md-9">
       <!-- The map goes here -->
           <l-map ref="map"
@@ -105,9 +138,13 @@ from the vuex store (store.js)
 </template>
 
 <script>
-import { mapState } from 'vuex'
+//require('bootstrap-select');
+import { mapState } from 'vuex';
 import { LMap, LTileLayer, LMarker, LPolyline, LLayerGroup, LTooltip, LPopup, LControlZoom, LControlAttribution, LControlScale, LControlLayers } from 'vue2-leaflet';
 import 'leaflet/dist/leaflet.css';
+//import selectpicker from 'bootstrap-select';
+import 'bootstrap-select';
+import 'bootstrap-select/dist/css/bootstrap-select.min.css';
 
 // this part resolve an issue where the markers would not appear
 delete L.Icon.Default.prototype._getIconUrl;
@@ -163,7 +200,7 @@ export default {
       Positions: ['topleft', 'topright', 'bottomleft', 'bottomright'],
       tileProviders: tileProviders,
       // bounds: L.latLngBounds({ 'lat': 51.476483373501964, 'lng': -0.14668464136775586 }, { 'lat': 51.52948330894063, 'lng': -0.019140238291583955 })
-      selected: ''
+      selected: '',
     }
   },
   mounted () {
@@ -173,6 +210,10 @@ export default {
     })
     this.getGeoLocation()
   },
+  updated () {
+		$(this.$refs.select1).selectpicker('refresh')
+	},
+  
   methods: {
     resizeMap () {
       this.map.invalidateSize()
