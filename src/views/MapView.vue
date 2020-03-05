@@ -8,17 +8,15 @@ from the vuex store (store.js)
 
 -->
 <template>
-<div id="app" class="container" style="height:100%;width:100%">
   <div class="row" style="height:100%;width:100%">
-  <div class="col-md-2">
-      <label class="form-check-label">
-  <input
-    class="form-check-input"
-    type="checkbox"
-  /> Readers </label>
-     
-    </div>  
-    
+  <div class="col-md-2" align="left">
+        <b-form-group label="Data Type">
+      <b-form-radio-group stacked id="radio-group-2" v-model="selected" name="radio-sub-component" stacked>
+      <b-form-radio  value="readers">Readers</b-form-radio>
+      <b-form-radio value="tags">Tag Reads</b-form-radio>
+       </b-form-radio-group>
+    </b-form-group>
+    <div class="mt-3">Selected: <strong>{{ selected }}</strong></div> </div>  
   <div class="col-md-9">
       <!-- The map goes here -->
           <l-map ref="map"
@@ -104,7 +102,6 @@ from the vuex store (store.js)
 
     </div>    
     </div>
-</div>
 </template>
 
 <script>
@@ -166,7 +163,7 @@ export default {
       Positions: ['topleft', 'topright', 'bottomleft', 'bottomright'],
       tileProviders: tileProviders,
       // bounds: L.latLngBounds({ 'lat': 51.476483373501964, 'lng': -0.14668464136775586 }, { 'lat': 51.52948330894063, 'lng': -0.019140238291583955 })
-
+      selected: ''
     }
   },
   mounted () {
