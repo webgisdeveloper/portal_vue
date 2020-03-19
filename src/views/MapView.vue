@@ -27,24 +27,19 @@ from the vuex store (store.js)
       </ul>
     <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
                         <strong>Species</strong>
-                                    <select class="selectpicker"  ref='select1'  id="species_selector" title="Choose one or more..." data-live-search="true" multiple data-actions-box="true">
-                                                <option>Cardinal</option>
-                                                <option>Blue Jay</option>
-                                                <option>Chickadee</option>
-                                                <option>Titmouse</option>
-                                                <option>Sparrow</option>
-                                                <option>Finch</option>
-                                                <option>Others</option>
+                                    <select v-model="selected" class="selectpicker"  ref='select1'  id="species_selector" title="Choose one or more..." data-live-search="true" multiple data-actions-box="true">
+                                        <option v-for="option in allspecies" v-bind:value="option.value">
+                                            {{ option.text }}
+                                        </option>
                                     </select>
                                       <br><strong>Tag ID</strong>
-                                              <select class="selectpicker" id="tag_selector" title="Choose one or more..." data-live-search="true" multiple data-actions-box="true">
-                                                <option>620000620</option>
-                                                <option>620000731</option>
-                                                <option>06200005BA</option>
-                                                <option>TDP000064D</option>
-                                                </select>
+                                              <select v-model="selected" class="selectpicker" id="tag_selector" title="Choose one or more..." data-live-search="true" multiple data-actions-box="true">
+                                        <option v-for="option in alltagid" v-bind:value="option.value">
+                                            {{ option.text }}
+                                        </option>
+                                        </select>
                                     <br><strong>Data Privacy</strong>
-                                                <select class="selectpicker" id="data_privacy" title="User only">
+                                                <select v-model="selected" class="selectpicker" id="data_privacy" title="User only">
                                                   <option>User only</option>
                                                   <option>All data</option>
                                                   </select>
@@ -138,11 +133,10 @@ from the vuex store (store.js)
 </template>
 
 <script>
-//require('bootstrap-select');
 import { mapState } from 'vuex';
 import { LMap, LTileLayer, LMarker, LPolyline, LLayerGroup, LTooltip, LPopup, LControlZoom, LControlAttribution, LControlScale, LControlLayers } from 'vue2-leaflet';
 import 'leaflet/dist/leaflet.css';
-//import selectpicker from 'bootstrap-select';
+import 'bootstrap';
 import 'bootstrap-select';
 import 'bootstrap-select/dist/css/bootstrap-select.min.css';
 
@@ -201,6 +195,21 @@ export default {
       tileProviders: tileProviders,
       // bounds: L.latLngBounds({ 'lat': 51.476483373501964, 'lng': -0.14668464136775586 }, { 'lat': 51.52948330894063, 'lng': -0.019140238291583955 })
       selected: '',
+      allspecies:[
+            {text:'Cardinal', value: 'Cardinal' },
+            {text:'Blue Jay', value: 'Blue Jay' },
+            {text:'Chickadee', value: 'Chickadee' },
+            {text:'Titmouse', value: 'Titmouse' },
+            {text:'Sparrow', value: 'Sparrow' },
+            {text:'Finch', value: 'Finch' },
+            {text:'Others', value: 'Others' }
+      ],
+      alltagid:[
+            {text:'620000620', value: '620000620'},
+            {text:'620000731', value: '620000731'},
+            {text:'06200005BA', value: '06200005BA'},
+            {text:'TDP000064D', value: 'TDP000064D'}
+      ]
     }
   },
   mounted () {
